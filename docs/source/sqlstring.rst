@@ -1,11 +1,16 @@
 sqlstring package
 =================
 
-.. toctree::
-   :maxdepth: 2
-
 Submodules
 ----------
+
+sqlstring.sql_builder module
+----------------------------
+
+.. automodule:: sqlstring.sql_builder
+    :members:
+    :undoc-members:
+    :show-inheritance:
 
 sqlstring.utils module
 ----------------------
@@ -23,4 +28,3 @@ Module contents
     :members:
     :undoc-members:
     :show-inheritance:
-

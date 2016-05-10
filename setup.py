@@ -79,6 +79,7 @@ setup(
     },
     install_requires=[
         'collections-extended>=0.7.0,<1.0.0',
+        'six>=1.10.0,<2.0.0'
         'sqlize>=0.1,<1.0.0',
         'sqlparse>=0.1.19,<1.0.0',
     ],

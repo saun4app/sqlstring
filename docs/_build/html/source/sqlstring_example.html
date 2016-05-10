@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sqlstring Examples &mdash; sqlstring 0.1.0 documentation</title>
+  <title>Usage Examples &mdash; sqlstring 0.1.0 documentation</title>
   
 
   
@@ -83,7 +83,20 @@
             
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">sqlstring Examples</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Usage Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#import">import</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#SelectBuilder">SelectBuilder</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#from_table()">from_table()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#distinct()">distinct()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#column()">column()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#where()">where()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#group_by()">group_by()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#limit()-and-offset()">limit() and offset()</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#InsertBuilder">InsertBuilder</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">sqlstring</a></li>
 </ul>
 
@@ -115,7 +128,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-    <li>sqlstring Examples</li>
+    <li>Usage Examples</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -292,15 +305,166 @@ div.nboutput  > :nth-child(2).stderr {
     margin-right: 4px;  /* make room for the exclamation icon */
 }
 </style>
-<div class="section" id="sqlstring-Examples">
-<h1>sqlstring Examples<a class="headerlink" href="#sqlstring-Examples" title="Permalink to this headline">¶</a></h1>
-<div class="nbinput container">
+<div class="section" id="Usage-Examples">
+<h1>Usage Examples<a class="headerlink" href="#Usage-Examples" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="import">
+<h2>import<a class="headerlink" href="#import" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput nblast container">
 <div class="highlight-none"><div class="highlight"><pre>
-<span></span>In [1]:
+<span></span>In [5]:
 </pre></div>
 </div>
 <div class="highlight-ipython3"><div class="highlight"><pre>
-<span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hi example&#39;</span><span class="p">)</span>
+<span></span><span class="kn">from</span> <span class="nn">sqlstring.sql_builder</span> <span class="k">import</span> <span class="n">InsertBuilder</span>
+<span class="kn">from</span> <span class="nn">sqlstring.sql_builder</span> <span class="k">import</span> <span class="n">SelectBuilder</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="SelectBuilder">
+<h2>SelectBuilder<a class="headerlink" href="#SelectBuilder" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="from_table()">
+<h3>from_table()<a class="headerlink" href="#from_table()" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [6]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">builder</span> <span class="o">=</span> <span class="n">SelectBuilder</span><span class="p">()</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">from_table</span><span class="p">(</span><span class="s1">&#39;address&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get_query_string</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[6]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&#39;SELECT * FROM address;&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="distinct()">
+<h3>distinct()<a class="headerlink" href="#distinct()" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [7]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">builder</span> <span class="o">=</span> <span class="n">SelectBuilder</span><span class="p">()</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">from_table</span><span class="p">(</span><span class="s1">&#39;address&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">distinct</span><span class="p">()</span><span class="o">.</span><span class="n">get_query_string</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[7]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&#39;SELECT DISTINCT * FROM address;&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="column()">
+<h3>column()<a class="headerlink" href="#column()" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [16]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">builder</span> <span class="o">=</span> <span class="n">SelectBuilder</span><span class="p">()</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">from_table</span><span class="p">(</span><span class="s1">&#39;address&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">column</span><span class="p">([</span><span class="s1">&#39;city&#39;</span><span class="p">,</span> <span class="s1">&#39;state_code&#39;</span><span class="p">])</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">get_query_string</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[16]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&#39;SELECT city, state_code FROM address;&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="where()">
+<h3>where()<a class="headerlink" href="#where()" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [10]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">builder</span> <span class="o">=</span> <span class="n">SelectBuilder</span><span class="p">()</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">from_table</span><span class="p">(</span><span class="s1">&#39;address&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">&#39;state_code&#39;</span><span class="p">,</span> <span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="s2">&quot; &#39;CA&#39; &quot;</span><span class="p">)</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">&#39;city&#39;</span><span class="p">,</span> <span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="s2">&quot; &#39;Oakland&#39; &quot;</span><span class="p">,</span> <span class="s1">&#39;AND&#39;</span><span class="p">)</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">get_query_string</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[10]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&quot;SELECT * FROM address WHERE state_code = &#39;CA&#39; AND city = &#39;Oakland&#39;;&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="group_by()">
+<h3>group_by()<a class="headerlink" href="#group_by()" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [11]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">builder</span> <span class="o">=</span> <span class="n">SelectBuilder</span><span class="p">()</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">from_table</span><span class="p">(</span><span class="s1">&#39;address&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">group_by</span><span class="p">([</span><span class="s1">&#39;state_code&#39;</span><span class="p">,</span> <span class="s1">&#39;city&#39;</span><span class="p">])</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">get_query_string</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[11]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&#39;SELECT * FROM address GROUP BY city, state_code;&#39;
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [12]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="c1">### order_by()</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [14]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">builder</span> <span class="o">=</span> <span class="n">SelectBuilder</span><span class="p">()</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">from_table</span><span class="p">(</span><span class="s1">&#39;address&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">([</span><span class="s1">&#39;state_code&#39;</span><span class="p">,</span> <span class="s1">&#39;city&#39;</span><span class="p">],</span> <span class="s1">&#39;DESC&#39;</span><span class="p">)</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">get_query_string</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -309,8 +473,68 @@ div.nboutput  > :nth-child(2).stderr {
 </div>
 <div class="container">
 <div class="highlight"><pre>
-hi example
+<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
+<span class="ansi-red-intense-fg ansi-bold">AttributeError</span>                            Traceback (most recent call last)
+<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-14-61da3d477f3a&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-intense-fg ansi-bold">()</span>
+<span class="ansi-green-fg">      1</span> builder <span class="ansi-yellow-intense-fg ansi-bold">=</span> SelectBuilder<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-intense-fg ansi-bold">----&gt; 2</span><span class="ansi-yellow-intense-fg ansi-bold"> </span>builder<span class="ansi-yellow-intense-fg ansi-bold">.</span>from_table<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-blue-intense-fg ansi-bold">&#39;address&#39;</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">.</span>order_by<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-blue-intense-fg ansi-bold">&#39;state_code&#39;</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-blue-intense-fg ansi-bold">&#39;city&#39;</span><span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-blue-intense-fg ansi-bold">&#39;DESC&#39;</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">      3</span> builder<span class="ansi-yellow-intense-fg ansi-bold">.</span>get_query_string<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+
+<span class="ansi-green-intense-fg ansi-bold">/home/vagrant/dev/seagate/py_env/lib34/lib/python3.4/site-packages/sqlstring-0.1.0-py3.4.egg/sqlstring/sql_builder.py</span> in <span class="ansi-cyan-fg">order_by</span><span class="ansi-blue-intense-fg ansi-bold">(self, column_name, order)</span>
+<span class="ansi-green-fg">    172</span>         <span class="ansi-yellow-intense-fg ansi-bold">:</span><span class="ansi-green-intense-fg ansi-bold">return</span><span class="ansi-yellow-intense-fg ansi-bold">:</span> an object of type<span class="ansi-red-fg"> </span><span class="ansi-red-fg">`</span>SelectBuilder<span class="ansi-red-fg">`</span>
+<span class="ansi-green-fg">    173</span>         &#34;&#34;&#34;
+<span class="ansi-green-intense-fg ansi-bold">--&gt; 174</span><span class="ansi-yellow-intense-fg ansi-bold">         </span>column_list <span class="ansi-yellow-intense-fg ansi-bold">=</span> self<span class="ansi-yellow-intense-fg ansi-bold">.</span>_sqlize_select<span class="ansi-yellow-intense-fg ansi-bold">.</span>_get_column_list<span class="ansi-yellow-intense-fg ansi-bold">(</span>column_name<span class="ansi-yellow-intense-fg ansi-bold">,</span> order<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">    175</span>         self<span class="ansi-yellow-intense-fg ansi-bold">.</span>_append_param_item<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-blue-intense-fg ansi-bold">&#39;order_by&#39;</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> column_list<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">    176</span>
+
+<span class="ansi-green-intense-fg ansi-bold">/home/vagrant/dev/seagate/py_env/lib34/lib/python3.4/site-packages/sqlstring-0.1.0-py3.4.egg/sqlstring/sql_builder.py</span> in <span class="ansi-cyan-fg">_get_column_list</span><span class="ansi-blue-intense-fg ansi-bold">(self, column_name, order)</span>
+<span class="ansi-green-fg">     62</span>
+<span class="ansi-green-fg">     63</span>     <span class="ansi-green-intense-fg ansi-bold">def</span> _get_column_list<span class="ansi-yellow-intense-fg ansi-bold">(</span>self<span class="ansi-yellow-intense-fg ansi-bold">,</span> column_name<span class="ansi-yellow-intense-fg ansi-bold">,</span> order<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-intense-fg ansi-bold">---&gt; 64</span><span class="ansi-yellow-intense-fg ansi-bold">         </span>result_list <span class="ansi-yellow-intense-fg ansi-bold">=</span> <span class="ansi-yellow-intense-fg ansi-bold">(</span>column_name<span class="ansi-yellow-intense-fg ansi-bold">,</span> column_name<span class="ansi-yellow-intense-fg ansi-bold">.</span>split<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-blue-intense-fg ansi-bold">&#39;,&#39;</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">[</span>type<span class="ansi-yellow-intense-fg ansi-bold">(</span>column_name<span class="ansi-yellow-intense-fg ansi-bold">)</span> <span class="ansi-green-intense-fg ansi-bold">is</span> str<span class="ansi-yellow-intense-fg ansi-bold">]</span>
+<span class="ansi-green-fg">     65</span>
+<span class="ansi-green-fg">     66</span>         <span class="ansi-green-intense-fg ansi-bold">if</span> <span class="ansi-blue-intense-fg ansi-bold">&#39;DESC&#39;</span> <span class="ansi-yellow-intense-fg ansi-bold">==</span> order<span class="ansi-yellow-intense-fg ansi-bold">.</span>upper<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+
+<span class="ansi-red-intense-fg ansi-bold">AttributeError</span>: &#39;list&#39; object has no attribute &#39;split&#39;
 </pre></div></div>
+</div>
+</div>
+<div class="section" id="limit()-and-offset()">
+<h3>limit() and offset()<a class="headerlink" href="#limit()-and-offset()" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [15]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="n">builder</span> <span class="o">=</span> <span class="n">SelectBuilder</span><span class="p">()</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">from_table</span><span class="p">(</span><span class="s1">&#39;address&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">offset</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span><span class="o">.</span><span class="n">get_query_string</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[15]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&#39;SELECT * FROM address LIMIT 100 OFFSET 200;&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="InsertBuilder">
+<h2>InsertBuilder<a class="headerlink" href="#InsertBuilder" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hi InsertBuilder&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 
