@@ -15,6 +15,7 @@
 
 import sys
 import os
+from recommonmark.parser import CommonMarkParser
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -41,6 +42,7 @@ extensions = [
     'sphinx.ext.viewcode',
     'sphinx.ext.githubpages',
     'sphinx.ext.viewcode',
+    'sphinx.ext.inheritance_diagram',
     'nbsphinx',
 ]
 
@@ -50,7 +52,11 @@ templates_path = ['_templates']
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
 # source_suffix = ['.rst', '.md']
-source_suffix = '.rst'
+source_suffix = ['.rst', '.md']
+
+source_parsers = {
+    '.md': CommonMarkParser,
+}
 
 # The encoding of source files.
 #source_encoding = 'utf-8-sig'
@@ -178,6 +184,12 @@ html_static_path = ['_static']
 
 # Custom sidebar templates, maps document names to template names.
 #html_sidebars = {}
+html_sidebars = {
+    'index': ['sidebarlogo.html', 'sourcelink.html', 'searchbox.html'],
+    'api': ['sidebarlogo.html', 'autotoc.html', 'sourcelink.html', 'searchbox.html'],
+    '**': ['sidebarlogo.html', 'localtoc.html', 'sourcelink.html', 'searchbox.html']
+}
+
 
 # Additional templates that should be rendered to pages, maps page names to
 # template names.

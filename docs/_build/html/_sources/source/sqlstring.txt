@@ -12,14 +12,6 @@ sqlstring.sql_builder module
     :undoc-members:
     :show-inheritance:
 
-sqlstring.utils module
-----------------------
-
-.. automodule:: sqlstring.utils
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
 
 Module contents
 ---------------

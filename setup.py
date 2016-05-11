@@ -4,7 +4,7 @@ Setup script.
 
 import sys
 from distutils.core import Command
-from setuptools import setup
+from setuptools import setup, find_packages
 from setuptools.command.test import test as TestCommand
 
 
@@ -29,12 +29,12 @@ class Coverage(Command):
         import coverage
         import unittest
 
-        cov = coverage.coverage(config_file='.coveragerc')
+        cov = coverage.coverage(config_file = '.coveragerc')
         cov.erase()
         cov.start()
 
         test_loader = unittest.TestLoader()
-        test_suite = test_loader.discover(start_dir='tests')
+        test_suite = test_loader.discover(start_dir = 'tests')
         unittest.TextTestRunner().run(test_suite)
 
         cov.stop()
@@ -64,38 +64,47 @@ class Tox(TestCommand):
         import shlex
         import tox
 
-        errno = tox.cmdline(args=shlex.split(self.tox_args))
+        errno = tox.cmdline(args = shlex.split(self.tox_args))
         sys.exit(errno)
 
 
 setup(
-    author='Saun Shewanown',
-    author_email='saun4app@gmail.com',
-    description='sqlstring',
-    download_url='',
-    cmdclass={
+    name = 'sqlstring',
+    version = '0.1.0',
+    license = 'MIT',
+    description = 'sqlstring creates SQL query strings.',
+    packages = find_packages(exclude = ['ez_setup', 'examples', 'test']),
+    url = 'https://github.com/saun4app/sqlstring',
+    download_url = 'https://github.com/saun4app/sqlstring/archive/master.zip',
+    author = 'Saun Shewanown',
+    author_email = 'saun4app@gmail.com',
+    cmdclass = {
         'coverage': Coverage,
         'test': Tox
     },
-    install_requires=[
+    install_requires = [
         'collections-extended>=0.7.0,<1.0.0',
-        'six>=1.10.0,<2.0.0'
+        'six>=1.10.0,<2.0.0',
         'sqlize>=0.1,<1.0.0',
         'sqlparse>=0.1.19,<1.0.0',
     ],
-    license='Apache License (2.0)',
-    name='sqlstring',
-    packages=[
-        'sqlstring',
-    ],
-    scripts=[],
-    tests_require=[
+    scripts = [],
+    tests_require = [
         'codecov>=2.0.3,<3.0.0',
         'coverage>=4.0.3,<5.0.0',
         'Sphinx>=1.4.1,<2.0.0',
         'tox>=2.3.1,<3.0.0',
         'virtualenv>=15.0.1,<16.0.0'
     ],
-    url='',
-    version='0.1.0'
+    keywords = 'sql string builder dataset sqlalchemy MySql Sqlite',
+    classifiers = [
+        'Development Status :: 4 - Beta',
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+        'Topic :: Database',
+        'Topic :: SQL',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.4',
+    ],
 )

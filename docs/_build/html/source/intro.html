@@ -31,7 +31,7 @@
 
   
     <link rel="top" title="sqlstring 0.1.0 documentation" href="../index.html"/>
-        <link rel="next" title="&lt;no title&gt;" href="sqlstring_example.html"/>
+        <link rel="next" title="Usage Examples" href="sqlstring_usage.html"/>
         <link rel="prev" title="sqlstring Python Library" href="../index.html"/> 
 
   
@@ -82,9 +82,14 @@
             
             
                 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul class="simple">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#credits">Credits</a><ul class="simple">
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sqlstring_usage.html">Usage Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">sqlstring</a></li>
 </ul>
 
@@ -164,10 +169,43 @@
 </style>
 <div class="section" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
-<p>Hi</p>
+<div class="toctree-wrapper compound">
+</div>
+<p><cite>sqlstring</cite> is a Python library for creating SQL query strings.  <cite>sqlstring</cite> has four query string building classes: <cite>SelectBuilder</cite>, <cite>InsertBuilder</cite>
+<cite>UpdateBuilder</cite>, and <cite>DeleteBuilder</cite>.</p>
+<p>Here is an an example of crating <cite>select</cite> query string using <cite>SelectBuilder</cite>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sqlstring.sql_builder</span> <span class="k">import</span> <span class="n">SelectBuilder</span>
+
+<span class="n">builder</span> <span class="o">=</span> <span class="n">SelectBuilder</span><span class="p">()</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">from_table</span><span class="p">(</span><span class="s1">&#39;address&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">&#39;state_code&#39;</span><span class="p">,</span> <span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="s2">&quot; &#39;CA&#39; &quot;</span><span class="p">)</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">&#39;city&#39;</span><span class="p">,</span> <span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="s2">&quot; &#39;Oakland&#39; &quot;</span><span class="p">,</span> <span class="s1">&#39;AND&#39;</span><span class="p">)</span>
+<span class="n">query_string</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="n">get_query_string</span><span class="p">()</span>
+<span class="c1"># SELECT * FROM address WHERE state_code = &#39;CA&#39; AND city = &#39;Oakland&#39;;</span>
+</pre></div>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>Install <code class="docutils literal"><span class="pre">sqlstring</span></code> from the <a class="reference external" href="https://pypi.python.org/pypi/sqlstring/">Python Package Index</a> using <code class="docutils literal"><span class="pre">pip</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ pip install sqlstring
+</pre></div>
+</div>
+<p>from <a class="reference external" href="https://github.com/saun4app/sqlstring">github</a> using <code class="docutils literal"><span class="pre">pip</span></code></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ pip install git+https://github.com/saun4app/sqlstring.git
+</pre></div>
+</div>
+</div>
+<div class="section" id="credits">
+<h2>Credits<a class="headerlink" href="#credits" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/saun4app/sqlstring">sqlstring</a> uses</p>
+<ul class="simple">
+<li><a class="reference external" href="https://pypi.python.org/pypi/sqlize/">sqlize</a> to creat the query strings.</li>
+<li><a class="reference external" href="https://github.com/hbetts/generator-python-lib/">generator-python-lib</a> to scaffold the project.</li>
+<li><a class="reference external" href="https://pypi.python.org/pypi/jupyter/">jupyter</a>, <a class="reference external" href="https://pypi.python.org/pypi/nbsphinx/">nbsphinx</a>, <a class="reference external" href="https://pypi.python.org/pypi/sphinx/">sphinx</a>, <a class="reference external" href="https://pypi.python.org/pypi/sphinx-rtd-theme/">sphinx-rtd-theme</a> for documentation.</li>
+</ul>
 <div class="toctree-wrapper compound">
 <ul class="simple">
 </ul>
+</div>
 </div>
 </div>
 
@@ -178,7 +216,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="sqlstring_example.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="sqlstring_usage.html" class="btn btn-neutral float-right" title="Usage Examples" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../index.html" class="btn btn-neutral" title="sqlstring Python Library" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>

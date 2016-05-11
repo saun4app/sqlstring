@@ -12,7 +12,7 @@ Contents:
    :maxdepth: 2
    
    source/intro
-   source/sqlstring_example
+   source/sqlstring_usage
    source/modules
 
 
