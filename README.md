@@ -12,11 +12,6 @@
 $ pip install sqlstring
 ```
 
-or
-
-```bash
-$ pip install git+https://gitlab.com:saun4app/sqlstring.git
-```
 
 ## Usage
 
