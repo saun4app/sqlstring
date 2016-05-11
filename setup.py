@@ -75,7 +75,6 @@ setup(
     description = 'sqlstring creates SQL query strings.',
     packages = find_packages(exclude = ['ez_setup', 'examples', 'test']),
     url = 'https://github.com/saun4app/sqlstring',
-    download_url = 'https://github.com/saun4app/sqlstring/archive/master.zip',
     author = 'Saun Shewanown',
     author_email = 'saun4app@gmail.com',
     cmdclass = {
