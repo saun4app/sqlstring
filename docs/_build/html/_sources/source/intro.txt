@@ -31,13 +31,6 @@ Install ``sqlstring`` from the `Python Package Index <https://pypi.python.org/py
    $ pip install sqlstring
 
 
-from `github <https://github.com/saun4app/sqlstring>`_ using ``pip``
-
-.. code-block:: bash
-
-   $ pip install git+https://github.com/saun4app/sqlstring.git
-
-
 Credits
 --------
 
