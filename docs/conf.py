@@ -40,7 +40,6 @@ extensions = [
     'sphinx.ext.coverage',
     'sphinx.ext.ifconfig',
     'sphinx.ext.viewcode',
-    'sphinx.ext.viewcode',
     'nbsphinx',
 ]
 
