@@ -39,7 +39,7 @@ Credits
 * `sqlize <https://pypi.python.org/pypi/sqlize/>`_ to creat the query strings.
 * `generator-python-lib <https://github.com/hbetts/generator-python-lib/>`_ to scaffold the project.
 * `jupyter <https://pypi.python.org/pypi/jupyter/>`_, `nbsphinx <https://pypi.python.org/pypi/nbsphinx/>`_, `sphinx <https://pypi.python.org/pypi/sphinx/>`_, `sphinx-rtd-theme <https://pypi.python.org/pypi/sphinx-rtd-theme/>`_ for documentation.
-
+* `ReadTheDocs <https://readthedocs.org/>`_ to host the document.
 
 .. toctree::
    :maxdepth: 2
