@@ -1,0 +1,10 @@
+{
+  "generator-python-lib": {
+    "projectName": "sqlstring",
+    "fullName": "Saun Shewanown",
+    "email": "saun4app@gmail.com",
+    "githubName": "saun4app",
+    "ciProvider": "Travis CI",
+    "version": "1.7.0"
+  }
+}
