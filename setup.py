@@ -70,7 +70,7 @@ class Tox(TestCommand):
 
 setup(
     name = 'sqlstring',
-    version = '0.1.0',
+    version = '0.1.01',
     license = 'MIT',
     description = 'sqlstring creates SQL query strings.',
     packages = find_packages(exclude = ['ez_setup', 'examples', 'test']),
