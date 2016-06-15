@@ -3,15 +3,25 @@
 [![Build Status](https://travis-ci.org/saun4app/sqlstring.svg?branch=master)](https://travis-ci.org/saun4app/sqlstring)
 [![codecov.io](https://codecov.io/github/hbetts/orbitalpy/coverage.svg?branch=master)](https://codecov.io/github/saun4app/sqlstring?branch=master)
 
-This project is under development...
+`sqlstring` is a Python library for creating SQL query strings.
 
 ## Installation
 
-Installation instructions...
+
+```bash
+$ pip install sqlstring
+```
+
+or from `github`
+
+```bash
+$ pip install git+https://github.com/saun4app/sqlstring
+```
+
 
 ## Usage
 
-Usage instructions...
+[Read the docs](https://sqlstring.readthedocs.org/)
 
 ## Contributing
 

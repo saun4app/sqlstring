@@ -1,10 +1,7 @@
 language: python
 env:
-  - TOXENV=py32
-  - TOXENV=py33
+  - TOXENV=py27
   - TOXENV=py34
-  - TOXENV=py35
-  - TOXENV=pypy
   - TOXENV=lint
 install:
   - pip install -r requirements-dev.txt

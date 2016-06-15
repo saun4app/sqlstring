@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import six
 import sqlize  # sql query builder
 import sqlparse
 from collections_extended import setlist
@@ -70,7 +69,6 @@ class SelectBuilder(StringBuilder):
     """ Creates SQL select query string """
 
     def __init__(self, limit = None, offset = None, distinct = False):
-        super(self.__class__, self).__init__()
         self._sqlize_select = sqlize.Select(limit = limit, offset = offset)
         self.distinct(distinct)
         self.join_table_dict = {}
@@ -91,7 +89,7 @@ class SelectBuilder(StringBuilder):
 
     def _get_column_list(self, column_name, order):
         result_list = column_name
-        if isinstance(column_name, six.string_types):
+        if isinstance(column_name, str):
             result_list = column_name.split(',')
 
         if 'DESC' == order.upper():
@@ -213,7 +211,6 @@ class InsertBuilder(StringBuilder):
     """
 
     def __init__(self, table_name = None):
-        super(self.__class__, self).__init__()
         item_list = ['column']
         self._init_param_list_dict(item_list)
         if bool(table_name):
@@ -271,7 +268,6 @@ class UpdateBuilder(StringBuilder):
     """ Creates SQL `UPDATE` query string. """
 
     def __init__(self, table_name = None):
-        super(self.__class__, self).__init__()
         self.set_value_dict = {}
 
         item_list = ['where', 'where_and', 'where_or']
@@ -330,9 +326,7 @@ class DeleteBuilder(StringBuilder):
     """ Creates SQL `DELETE` query string. """
 
     def __init__(self, table_name = None):
-        super(self.__class__, self).__init__()
         item_list = ['where', 'where_and', 'where_or']
-        # item_list = ['where']
         self._init_param_list_dict(item_list)
         if bool(table_name):
             self.from_table(table_name)
