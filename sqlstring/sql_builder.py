@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import six
 import sqlize  # sql query builder
 import sqlparse
 from collections_extended import setlist
@@ -90,7 +89,7 @@ class SelectBuilder(StringBuilder):
 
     def _get_column_list(self, column_name, order):
         result_list = column_name
-        if isinstance(column_name, six.string_types):
+        if isinstance(column_name, str):
             result_list = column_name.split(',')
 
         if 'DESC' == order.upper():

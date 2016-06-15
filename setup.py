@@ -82,18 +82,17 @@ setup(
         'test': Tox
     },
     install_requires = [
-        'collections-extended>=0.7.0,<1.0.0',
-        'six>=1.10.0,<2.0.0',
-        'sqlize>=0.1,<1.0.0',
-        'sqlparse>=0.1.19,<1.0.0',
+        'collections-extended>=0.7.0,<1',
+        'sqlize>=0.1,<1',
+        'sqlparse>=0.1.19,<1',
     ],
     scripts = [],
     tests_require = [
-        'codecov>=2.0.3,<3.0.0',
-        'coverage>=4.0.3,<5.0.0',
-        'Sphinx>=1.4.1,<2.0.0',
-        'tox>=2.3.1,<3.0.0',
-        'virtualenv>=15.0.1,<16.0.0'
+        'codecov>=2.0.3,<3',
+        'coverage>=4.0.3,<5',
+        'Sphinx>=1.4.1,<2',
+        'tox>=2.3.1,<3',
+        'virtualenv>=15.0.1,<16'
     ],
     keywords = 'sql string builder dataset sqlalchemy MySql PostgreSQL Sqlite',
     classifiers = [
